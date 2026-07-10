@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TOKYO SOKUSEI SEIKA | 東京促成青果株式会社 - The Clean Stream</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&amp;family=Source+Serif+4:ital,wght@0,600;0,700;1,600&amp;family=Hanken+Grotesk:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#2c5000",
+                        "tertiary": "#595f66",
+                        "inverse-on-surface": "#f3f0f0",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#b6d0ff",
+                        "on-secondary-container": "#3f5882",
+                        "surface": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "secondary-fixed": "#d6e3ff",
+                        "secondary": "#455f88",
+                        "surface-container": "#f0eded",
+                        "integrity-green": "#76B531",
+                        "surface-glass": "rgba(255, 255, 255, 0.4)",
+                        "outline-variant": "#c2c9b3",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#161c22",
+                        "inverse-primary": "#97d951",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed-variant": "#2d476f",
+                        "surface-container-highest": "#e4e2e1",
+                        "outline": "#727a67",
+                        "on-secondary-fixed": "#001b3c",
+                        "primary-fixed": "#b2f66a",
+                        "on-primary-fixed": "#0e2000",
+                        "on-background": "#1b1c1c",
+                        "tertiary-container": "#9fa5ac",
+                        "on-tertiary-container": "#343b41",
+                        "primary-fixed-dim": "#97d951",
+                        "surface-tint": "#3c6a00",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed-dim": "#adc7f7",
+                        "surface-bright": "#fbf9f8",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "tokyo-market-blue": "#0A2463",
+                        "innovation-silver": "#F8FAFC",
+                        "on-surface-variant": "#424938",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed": "#dde3eb",
+                        "surface-container-high": "#eae8e7",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "primary": "#3c6a00",
+                        "primary-container": "#76b531",
+                        "on-primary-container": "#234200",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "2xl": "1.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "section-gap": "200px",
+                        "gutter": "40px",
+                        "container-max": "1440px",
+                        "margin-desktop": "100px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Noto Sans"],
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "display-lg-mobile": ["\"Source Serif 4\""],
+                        "caption": ["Noto Sans"],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .reveal-obs { opacity: 0; transform: translateY(20px); transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .reveal-obs.active { opacity: 1; transform: translateY(0); }
+        
+        #shader-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-nav.scrolled { 
+            background: rgba(255, 255, 255, 0.8); 
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes scroll-bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .animate-scroll { animation: scroll-bounce 2.5s infinite; }
+
+        .bento-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .hero-title {
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+        }
+
+        /* Subtle scroll interaction for text opacity */
+        .fade-scroll { transition: opacity 0.5s ease-out; }
+    </style>
+<!-- Structured Data for AI/AEO -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "東京促成青果株式会社",
+      "alternateName": "TOKYO SOKUSEI SEIKA",
+      "url": "https://www.tokyo-sokusei-seika.co.jp/",
+      "logo": "https://lh3.googleusercontent.com/aida/AP1WRLsH4nQzeQSvFanMrHYqagm39OuN8WiqMlj8_xSOwst6glWYUFZZyzeerioAjYwdEsMDVeXGEsQEVsXttVUGFOC6mFMavjO3UEV6cn4y0VBP3f5vRFARW5LM76MEEFKI7ejPbs1h2-tIKPgJSFIur3JSJ-uygUvSWzrRwutDz-PTPqOkYQgge64FJsg4RzDTQgzf2xuxyMZyYQzCDP73aS-o23U5BIhum-i4iS-mqFogNzWnYqNOhuY7RTg",
+      "description": "創業1948年。築地から大田市場へ。鮮度と信頼を届ける食品流通の革新者として、高度な加工技術とDXを融合させた次世代の青果インフラを構築します。",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "東海3丁目2番6号 大田市場内",
+        "addressLocality": "大田区",
+        "addressRegion": "東京都",
+        "postalCode": "143-0001",
+        "addressCountry": "JP"
+      },
+      "knowsAbout": ["青果流通", "食品加工", "品質管理", "サプライチェーンDX", "HACCP"],
+      "foundingDate": "1948",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "流通・加工サービス",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "大田市場物流拠点"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "高度加工センター（HACCP準拠）"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-integrity-green selection:text-white overflow-x-hidden antialiased">
+<canvas id="shader-canvas"></canvas>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-nav py-6" id="top-nav">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-6">
+<img alt="TOKYO SOKUSEI" class="h-6 md:h-8 w-auto mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/AP1WRLsH4nQzeQSvFanMrHYqagm39OuN8WiqMlj8_xSOwst6glWYUFZZyzeerioAjYwdEsMDVeXGEsQEVsXttVUGFOC6mFMavjO3UEV6cn4y0VBP3f5vRFARW5LM76MEEFKI7ejPbs1h2-tIKPgJSFIur3JSJ-uygUvSWzrRwutDz-PTPqOkYQgge64FJsg4RzDTQgzf2xuxyMZyYQzCDP73aS-o23U5BIhum-i4iS-mqFogNzWnYqNOhuY7RTg"/>
+<div class="h-4 w-px bg-on-surface/10 hidden lg:block"></div>
+<span class="font-label-caps text-[10px] tracking-[0.3em] text-tokyo-market-blue hidden lg:block uppercase">The Clean Stream</span>
+</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors tracking-widest" href="#heritage">HERITAGE</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors tracking-widest" href="#innovation">INNOVATION</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors tracking-widest" href="#sustainability">SUSTAINABILITY</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors tracking-widest" href="#careers">CAREERS</a>
+<button class="border border-tokyo-market-blue text-tokyo-market-blue px-6 py-2.5 font-label-caps text-[11px] hover:bg-tokyo-market-blue hover:text-white transition-all tracking-widest">CONTACT</button>
+</div>
+<button class="md:hidden text-tokyo-market-blue">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-[110vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-white/20 z-10"></div>
+<div class="w-full h-full bg-cover bg-center scale-100 transition-transform duration-[20s] animate-pulse-slow opacity-90" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmo0WQ1SzdAJh9DpNAs-qrYPXLhASuOMYMWxZyhc3xn76Z6oNHCBJFLz1p_ARDbNR2ADxScDYrOBU8fTmrlqd1z3rYVBOtR_N6w3aiiUhyk75xbnCPrAXJFOkmalpq7k0MrwxrZ5nWzSBxKvMLExoRkMN-5gFj3wnzQG8LOj-BzIRBWmOjTJ_Q9VREWpWK-TjUMjKJHvqmAZLqaA-NGvIPqKp4J4FB6foNxomHaOm92u-cBDpunN1Uw0q5HQWxklF8pLFY7VIgNGA')"></div>
+</div>
+<div class="relative z-20 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto w-full text-center fade-scroll">
+<span class="font-label-caps text-label-caps text-tokyo-market-blue mb-8 block tracking-[0.4em] reveal-obs" style="transition-delay: 200ms">EST. 1948 TSUKIJI</span>
+<h1 class="font-display-lg text-[48px] md:text-[84px] hero-title text-tokyo-market-blue mb-12 italic reveal-obs" style="transition-delay: 400ms">
+            日本の食を、<br/><span class="not-italic font-semibold">未来へつなぐ。</span>
+</h1>
+<p class="font-body-lg text-lg md:text-xl text-tokyo-market-blue/80 max-w-2xl mx-auto leading-relaxed reveal-obs" style="transition-delay: 600ms">
+            築地から大田へ。私たちは「目利き」の感性と最新のテクノロジーを融合し、<br class="hidden md:block"/>
+            淀みのない、清らかな食の流通（The Clean Stream）を創出します。
+        </p>
+</div>
+<div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-tokyo-market-blue/40">
+<span class="font-label-caps text-[10px] tracking-[0.3em]">SCROLL DOWN</span>
+<div class="w-px h-16 bg-tokyo-market-blue/20 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-tokyo-market-blue/60 -translate-y-full animate-scroll"></div>
+</div>
+</div>
+</section>
+<!-- Brand Message (Philosophical Section) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="reveal-obs">
+<span class="font-label-caps text-label-caps text-integrity-green mb-8 block tracking-widest">PHILOSOPHY</span>
+<h2 class="font-display-lg text-[40px] md:text-[56px] text-tokyo-market-blue mb-12 leading-[1.2] italic">
+                    静かなる革新、<br/>
+<span class="not-italic">清流のごとく。</span>
+</h2>
+<div class="space-y-8 text-on-surface-variant font-body-lg text-lg leading-loose max-w-xl">
+<p>
+                        創業以来、私たちが守り続けてきたのは「誠実」という名の品質です。
+                        時代が激しく変化する中で、私たちは変わらない価値を見極め、
+                        それを最新の最適解として社会に届けます。
+                    </p>
+<p>
+                        伝統の知恵とデジタルの効率。相反する二つを高い次元で調和させ、
+                        産地から食卓まで、一分の隙もない清らかな流れを構築すること。
+                        それが東京促成青果の約束です。
+                    </p>
+</div>
+</div>
+<div class="relative reveal-obs" style="transition-delay: 300ms">
+<div class="aspect-[4/5] bg-cover bg-center rounded-2xl shadow-sm filter grayscale hover:grayscale-0 transition-all duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAormT_OewyGrqqi_nbP7S6nNQ5QRgApdIwH3JCa2cQoaFJYu_hNNaeRB4Lx1IwUJPk6qlm1amcil3AbK-ZmFCvvUS9ib7DdIo625ziSJEQDMAoGdy2NLfW5dEp1TFPkI1ufwhLDQCbor9E7145Q43uq0A_Hepvy-m5tN-ch9gaeAk9__TE7mr_PW_0MUmH0P7-gl8xQNkjEUr3bEHsCV69pf3u6Zs2D4X1popZkphXLgf2Z2F-022CxBHZKKifhKmF0GNwyTWPIWg')"></div>
+<div class="absolute -bottom-8 -left-8 w-48 h-48 bg-white/40 backdrop-blur-xl p-8 flex flex-col justify-end border border-white/20">
+<span class="text-tokyo-market-blue font-display-lg text-4xl">70+</span>
+<span class="text-on-surface-variant font-label-caps text-[10px] tracking-widest mt-2 uppercase">Years of Trust</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Bento Grid -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-[#F5F5F7]/30" id="stats">
+<div class="max-w-container-max mx-auto">
+<div class="mb-20 text-center reveal-obs">
+<span class="font-label-caps text-label-caps text-tokyo-market-blue/40 block mb-4 tracking-[0.4em]">FACTS &amp; FIGURES</span>
+<h2 class="font-display-lg text-4xl text-tokyo-market-blue">数字で見る、東京促成青果。</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 h-auto md:h-[600px]">
+<!-- 1948 Founded (Large Card) -->
+<article class="md:col-span-2 lg:col-span-3 bg-[#F5F5F7]/50 rounded-2xl bento-card p-12 flex flex-col justify-between relative overflow-hidden reveal-obs">
+<div class="absolute inset-0 z-0 opacity-10">
+<img alt="History background" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida/AP1WRLu2erQcdDCK7BuicTSdNr00w09oQoKGZ0peEJye_kkEl3Izw8IKjoqKSfcpNfM3Qs40FL1y29lIWR8ficBjCD73NjnHKFreB73zaQGdKczIO53tvNQN8ubLs2eMT3kb83c-lERlAlqbfXzUGg-c8RcVlm7c5480cqOOaA9J5RRIWqxNcsrMLcbSuCFcMzX1jwMo3b5Xs74DBTdKmKq_gbRt9cxsFhOkk2nfXTUOWhwrfYPREJIjjEI51ac"/>
+</div>
+<div class="relative z-10">
+<span class="font-label-caps text-[11px] tracking-[0.2em] text-tokyo-market-blue/60 uppercase">Founded</span>
+<h3 class="font-display-lg text-7xl md:text-8xl text-tokyo-market-blue mt-4">1948</h3>
+</div>
+<p class="relative z-10 font-body-md text-on-surface-variant max-w-xs text-lg">
+                    東京・築地で産声を上げた信頼の歴史。日本の青果流通の原点と共に歩んできました。
+                </p>
+</article>
+<!-- Professionals -->
+<article class="md:col-span-2 lg:col-span-3 bg-[#F5F5F7]/50 rounded-2xl bento-card p-12 flex flex-col justify-between reveal-obs" style="transition-delay: 100ms">
+<div>
+<span class="font-label-caps text-[11px] tracking-[0.2em] text-tokyo-market-blue/60 uppercase">Professionals</span>
+<h3 class="font-display-lg text-7xl text-tokyo-market-blue mt-4">160+</h3>
+</div>
+<p class="font-body-md text-on-surface-variant text-lg">
+                    目利き、加工、物流。各分野のスペシャリストが集結するプロフェッショナル集団。
+                </p>
+</article>
+<!-- Technology Base -->
+<article class="md:col-span-2 lg:col-span-2 bg-[#F5F5F7]/50 rounded-2xl bento-card p-10 flex flex-col justify-between reveal-obs" style="transition-delay: 200ms">
+<div>
+<span class="font-label-caps text-[11px] tracking-[0.2em] text-tokyo-market-blue/60 uppercase">Technology Base</span>
+<h3 class="font-display-lg text-5xl text-tokyo-market-blue mt-4">900<span class="text-2xl ml-1">坪</span></h3>
+</div>
+<p class="font-body-md text-on-surface-variant">大田市場内に構える大規模加工・物流施設。HACCP準拠の高度な衛生管理体制を誇ります。</p>
+</article>
+<!-- Hybrid Model -->
+<article class="md:col-span-2 lg:col-span-2 bg-tokyo-market-blue rounded-2xl bento-card p-10 flex flex-col justify-between text-white reveal-obs" style="transition-delay: 300ms">
+<div>
+<span class="font-label-caps text-[11px] tracking-[0.2em] opacity-60 uppercase">Business Structure</span>
+<h3 class="font-display-lg text-5xl mt-4">HYBRID</h3>
+</div>
+<p class="font-body-md opacity-80 italic">「荷受」の集荷力と「仲卸」の販売力を垂直統合した、独自のハイブリッド流通モデル。</p>
+</article>
+<!-- Network -->
+<article class="md:col-span-4 lg:col-span-2 bg-[#F5F5F7]/50 rounded-2xl bento-card p-10 flex flex-col justify-between reveal-obs" style="transition-delay: 400ms">
+<div>
+<span class="font-label-caps text-[11px] tracking-[0.2em] text-tokyo-market-blue/60 uppercase">Network</span>
+<h3 class="font-display-lg text-5xl text-tokyo-market-blue mt-4">47<span class="text-2xl ml-1">Pref.</span></h3>
+</div>
+<p class="font-body-md text-on-surface-variant">全国47都道府県の産地と直接つながる強固なネットワークで、旬の価値を最大化します。</p>
+</article>
+</div>
+</div>
+</section>
+<!-- Heritage Section (Content Refined) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop overflow-hidden bg-white/40" id="heritage">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter items-end">
+<div class="w-full md:w-3/5 reveal-obs">
+<img alt="TSUKUJI 1948" class="w-full aspect-video object-cover grayscale transition-all duration-1000 hover:grayscale-0 rounded-sm" src="https://lh3.googleusercontent.com/aida/AP1WRLu2erQcdDCK7BuicTSdNr00w09oQoKGZ0peEJye_kkEl3Izw8IKjoqKSfcpNfM3Qs40FL1y29lIWR8ficBjCD73NjnHKFreB73zaQGdKczIO53tvNQN8ubLs2eMT3kb83c-lERlAlqbfXzUGg-c8RcVlm7c5480cqOOaA9J5RRIWqxNcsrMLcbSuCFcMzX1jwMo3b5Xs74DBTdKmKq_gbRt9cxsFhOkk2nfXTUOWhwrfYPREJIjjEI51ac"/>
+<div class="mt-12 flex justify-between items-baseline border-b border-on-surface/5 pb-6">
+<span class="font-display-lg text-6xl text-tokyo-market-blue/10">HERITAGE</span>
+<h3 class="font-headline-md text-2xl text-tokyo-market-blue">脈々と流れる、誠実の記憶。</h3>
+</div>
+</div>
+<div class="w-full md:w-2/5 pb-6 reveal-obs" style="transition-delay: 200ms">
+<div class="bg-[#F5F5F7]/30 backdrop-blur-md p-12 border-l border-integrity-green">
+<p class="font-display-lg text-2xl text-tokyo-market-blue leading-relaxed italic mb-8">
+                        「本当に良いものを、<br/>明日を担う人々へ。」
+                    </p>
+<p class="font-body-md text-on-surface-variant leading-loose">
+                        戦後の復興から現在まで、私たちは一貫して「食」の最前線に立ってきました。時代が変わっても、私たちの根幹にあるのは、生産者への敬意と、消費者への誠実さ。その「流れ」は、これからも淀むことなく未来へ続いていきます。
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section (Vertical Integration) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="innovation">
+<div class="max-w-container-max mx-auto">
+<div class="mb-24 reveal-obs text-center max-w-2xl mx-auto">
+<span class="font-label-caps text-label-caps text-integrity-green mb-6 block tracking-widest">INNOVATION</span>
+<h2 class="font-display-lg text-4xl md:text-5xl text-tokyo-market-blue leading-tight">DXが加速させる、<br/>食の最適解。</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<article class="reveal-obs group">
+<div class="overflow-hidden aspect-[16/9] mb-8 rounded-sm">
+<img alt="OOTA FACILITY" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/AP1WRLtgPm6fIPChHIWVEGYErwnIZKRgEckkn0PaTi84VaObemOCBu_mbBUZoUgKOPu2i7m8DqzSlK7km54cSsV9JjCYNarOw-wkTus_K_2eAVRqNUBQQCIBhBUHFT3XQUUJcvhzGDtn3i9m9fmZeftJcVoGYDtW-xm5P5WrUiwAMiuG5vXA2QE2CFDS3LFxy4Iw8a1HaxLBedoQmJCgI2Tx5lKdiaM1FWlealSd0-kET_Qc2AtxfhyKHM9CKfg"/>
+</div>
+<h3 class="font-headline-md text-2xl text-tokyo-market-blue mb-4">大田市場スマート・ロジスティクス</h3>
+<p class="font-body-md text-on-surface-variant leading-loose mb-6">
+                    日本最大級の市場機能を最大限に活用。ITによる需要予測とリアルタイムな在庫管理により、フードロスを最小化しながら鮮度を最大化する「清らかな物流」を実現。
+                </p>
+<a class="font-label-caps text-[11px] tracking-widest text-tokyo-market-blue inline-flex items-center gap-3 group-hover:gap-6 transition-all" href="#">VIEW SYSTEM <span class="material-symbols-outlined text-sm">east</span></a>
+</article>
+<article class="reveal-obs group" style="transition-delay: 200ms">
+<div class="overflow-hidden aspect-[16/9] mb-8 rounded-sm bg-tokyo-market-blue p-12 flex flex-col justify-center text-white">
+<span class="material-symbols-outlined text-5xl mb-6 text-integrity-green">verified</span>
+<h4 class="font-display-lg text-3xl mb-4">HACCP &amp; DX Processing</h4>
+<p class="font-body-md opacity-70">
+                        加工工程のすべてをデジタル管理。トレサビリティの徹底により、食の安心を科学的に証明します。
+                    </p>
+</div>
+<h3 class="font-headline-md text-2xl text-tokyo-market-blue mb-4">高度加工と厳格な衛生管理</h3>
+<p class="font-body-md text-on-surface-variant leading-loose mb-6">
+                    顧客の細かなニーズに合わせたカット野菜やミールキット加工。すべての工程で世界基準の衛生管理を行い、プロの厨房に「時間」と「価値」を提供します。
+                </p>
+<a class="font-label-caps text-[11px] tracking-widest text-tokyo-market-blue inline-flex items-center gap-3 group-hover:gap-6 transition-all" href="#">PROCESS DETAILS <span class="material-symbols-outlined text-sm">east</span></a>
+</article>
+</div>
+</div>
+</section>
+<!-- Sustainability Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop" id="sustainability">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row-reverse gap-20 items-center">
+<div class="w-full lg:w-1/2 reveal-obs">
+<span class="font-label-caps text-label-caps text-integrity-green mb-8 block tracking-widest">SUSTAINABILITY</span>
+<h2 class="font-display-lg text-4xl md:text-5xl text-tokyo-market-blue mb-10 italic">豊かな大地を、<br/><span class="not-italic">次世代の食卓へ。</span></h2>
+<div class="space-y-8 text-on-surface-variant font-body-lg text-lg leading-loose">
+<p>
+                        私たちのビジネスは、大地という母体なしには成立しません。
+                        産地の持続可能性を高めること、すなわち生産者の収益向上と環境負荷の低減を、
+                        流通という立場から全力で支援しています。
+                    </p>
+<p>
+                        規格外野菜の有効活用、配送効率の極大化によるCO2削減。
+                        これらはすべて、清らかな食の循環を未来へ繋ぐための責務です。
+                    </p>
+</div>
+</div>
+<div class="w-full lg:w-1/2 reveal-obs" style="transition-delay: 200ms">
+<div class="aspect-square bg-cover bg-center rounded-sm shadow-xl" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcYGWrLvH5THWfJtRv9PClXTH2I0s8J1jaKcex-GHi53nuQdkIxNSEdXPFfTmF_fd-3clKu9nw66zkdwXULjID43gR0xpDefKnyOvdMOVhroAgxqb2vv7VIKZf-LjRWapoJq1OUJ-gzoq_-Eok-OtH68b7ncMXmArFhleGsG0ZmGJrcIsdcTrPMYUgEOIyb2zo0YBZEL7nEy304UZMmhQIu-4NgwwAu9zwFwrFO2no81Eypgc9mRhEzBKR0nWZPA3vYmUwqrMLbXo')"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- News & Careers -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-[#F5F5F7]/30" id="careers">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+<!-- News -->
+<article class="reveal-obs">
+<div class="flex justify-between items-baseline mb-16 border-b border-on-surface/5 pb-6">
+<h2 class="font-display-lg text-3xl text-tokyo-market-blue uppercase tracking-widest">News</h2>
+<a class="font-label-caps text-[11px] text-on-surface-variant hover:text-integrity-green transition-colors tracking-widest" href="#">ALL UPDATES</a>
+</div>
+<div class="space-y-12">
+<div class="group cursor-pointer">
+<time class="font-label-caps text-[11px] text-on-surface-variant block mb-3">2024.05.15</time>
+<h3 class="font-body-lg text-xl text-on-surface group-hover:text-tokyo-market-blue transition-colors">高度加工センターにおける最新HACCP認証の更新について</h3>
+</div>
+<div class="group cursor-pointer">
+<time class="font-label-caps text-[11px] text-on-surface-variant block mb-3">2024.04.10</time>
+<h3 class="font-body-lg text-xl text-on-surface group-hover:text-tokyo-market-blue transition-colors">「The Clean Stream」サステナビリティビジョン2030の公開</h3>
+</div>
+<div class="group cursor-pointer">
+<time class="font-label-caps text-[11px] text-on-surface-variant block mb-3">2024.03.20</time>
+<h3 class="font-body-lg text-xl text-on-surface group-hover:text-tokyo-market-blue transition-colors">産地直送ネットワークの新規提携農家（長野・静岡）のお知らせ</h3>
+</div>
+</div>
+</article>
+<!-- Careers -->
+<article class="reveal-obs" style="transition-delay: 200ms">
+<div class="bg-tokyo-market-blue p-16 text-white h-full flex flex-col justify-between rounded-2xl bento-card">
+<div>
+<h2 class="font-display-lg text-4xl mb-8 uppercase tracking-widest">Careers</h2>
+<p class="font-body-lg text-lg opacity-80 leading-relaxed mb-12 max-w-sm">
+                            食の未来を、あなたの感性と技術で。<br/>
+                            私たちは、清流を創り出す新しい仲間を求めています。
+                        </p>
+</div>
+<a class="inline-flex items-center gap-4 bg-white text-tokyo-market-blue px-10 py-5 font-label-caps text-[12px] tracking-widest hover:bg-integrity-green hover:text-white transition-all self-start rounded-sm" href="#">
+                        RECRUITMENT SITE <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white/40 border-t border-on-surface/5 py-32 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
+<div class="md:col-span-2">
+<img alt="TOKYO SOKUSEI" class="h-8 mb-12 grayscale opacity-60 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/AP1WRLsH4nQzeQSvFanMrHYqagm39OuN8WiqMlj8_xSOwst6glWYUFZZyzeerioAjYwdEsMDVeXGEsQEVsXttVUGFOC6mFMavjO3UEV6cn4y0VBP3f5vRFARW5LM76MEEFKI7ejPbs1h2-tIKPgJSFIur3JSJ-uygUvSWzrRwutDz-PTPqOkYQgge64FJsg4RzDTQgzf2xuxyMZyYQzCDP73aS-o23U5BIhum-i4iS-mqFogNzWnYqNOhuY7RTg"/>
+<address class="not-italic font-body-md text-on-surface-variant space-y-2 text-sm">
+<p class="text-on-surface font-semibold mb-4">東京促成青果株式会社</p>
+<p>〒143-0001 東京都大田区東海3丁目2番6号 大田市場内</p>
+<p>TEL: 03-XXXX-XXXX / FAX: 03-XXXX-XXXX</p>
+</address>
+</div>
+<nav class="space-y-10">
+<h4 class="font-label-caps text-[11px] text-tokyo-market-blue tracking-[0.3em] uppercase">Navigation</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#heritage">Heritage</a></li>
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#innovation">Innovation</a></li>
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#sustainability">Sustainability</a></li>
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#careers">Careers</a></li>
+</ul>
+</nav>
+<nav class="space-y-10">
+<h4 class="font-label-caps text-[11px] text-tokyo-market-blue tracking-[0.3em] uppercase">Corporate</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-body-md text-sm text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#">Contact Us</a></li>
+</ul>
+</nav>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-on-surface/5 gap-8">
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant opacity-60">© 2024 Tokyo Sokusei Seika Co., Ltd. All Rights Reserved.</p>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#"><span class="material-symbols-outlined text-xl">language</span></a>
+<a class="text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Shader Background Implementation
+    const canvas = document.getElementById('shader-canvas');
+    const gl = canvas.getContext('webgl');
+
+    const vertexSource = `
+        attribute vec2 position;
+        varying vec2 v_texCoord;
+        void main() {
+            v_texCoord = position * 0.5 + 0.5;
+            v_texCoord.y = 1.0 - v_texCoord.y;
+            gl_Position = vec4(position, 0.0, 1.0);
+        }
+    `;
+
+    const fragmentSource = `
+        precision highp float;
+        varying vec2 v_texCoord;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+
+        void main() {
+            vec2 uv = v_texCoord;
+            float noise = sin(uv.x * 2.0 + u_time * 0.15) * cos(uv.y * 2.0 - u_time * 0.1);
+            noise += sin(uv.y * 3.0 + u_time * 0.2) * cos(uv.x * 4.0 + u_time * 0.05);
+            
+            vec3 color1 = vec3(0.985, 0.985, 0.988); // Grey-White base
+            vec3 color2 = vec3(0.94, 0.96, 0.94); // Very subtle Forest Green
+            vec3 color3 = vec3(0.94, 0.95, 0.97); // Very subtle Action Blue
+            
+            vec3 finalColor = mix(color1, color2, noise * 0.08 + 0.08);
+            finalColor = mix(finalColor, color3, sin(u_time * 0.1) * 0.04 + 0.04);
+            
+            gl_FragColor = vec4(finalColor, 1.0);
+        }
+    `;
+
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        return shader;
+    }
+
+    const program = gl.createProgram();
+    gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vertexSource));
+    gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fragmentSource));
+    gl.linkProgram(program);
+
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+    const positionLocation = gl.getAttribLocation(program, 'position');
+    const timeLocation = gl.getUniformLocation(program, 'u_time');
+    const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function render(time) {
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(program);
+        gl.enableVertexAttribArray(positionLocation);
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+        gl.uniform1f(timeLocation, time * 0.001);
+        gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+
+    // Scroll Interaction: Reveal Elements
+    const observerOptions = {
+        threshold: 0.1
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-obs').forEach(el => observer.observe(el));
+
+    // Scroll Interaction: Header and Hero Fade
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('top-nav');
+        const heroFadeElements = document.querySelectorAll('.fade-scroll');
+        const scrollPos = window.scrollY;
+
+        // Header
+        if (scrollPos > 80) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+
+        // Hero Opacity Fade
+        heroFadeElements.forEach(el => {
+            const opacity = 1 - (scrollPos / 600);
+            el.style.opacity = Math.max(0, opacity);
+            el.style.transform = `translateY(${scrollPos * 0.1}px)`;
+        });
+    });
+</script>
+</body></html>

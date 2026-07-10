@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TOKYO SOKUSEI SEIKA | 東京促成青果株式会社</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&amp;family=Source+Serif+4:wght@600;700&amp;family=Hanken+Grotesk:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#2c5000",
+                        "tertiary": "#595f66",
+                        "inverse-on-surface": "#f3f0f0",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#b6d0ff",
+                        "on-secondary-container": "#3f5882",
+                        "surface": "#fbf9f8",
+                        "background": "#fbf9f8",
+                        "secondary-fixed": "#d6e3ff",
+                        "secondary": "#455f88",
+                        "surface-container": "#f0eded",
+                        "integrity-green": "#76B531",
+                        "surface-glass": "rgba(255, 255, 255, 0.7)",
+                        "outline-variant": "#c2c9b3",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#161c22",
+                        "inverse-primary": "#97d951",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-secondary-fixed-variant": "#2d476f",
+                        "surface-container-highest": "#e4e2e1",
+                        "outline": "#727a67",
+                        "on-secondary-fixed": "#001b3c",
+                        "primary-fixed": "#b2f66a",
+                        "on-primary-fixed": "#0e2000",
+                        "on-background": "#1b1c1c",
+                        "tertiary-container": "#9fa5ac",
+                        "on-tertiary-container": "#343b41",
+                        "primary-fixed-dim": "#97d951",
+                        "surface-tint": "#3c6a00",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed-dim": "#adc7f7",
+                        "surface-bright": "#fbf9f8",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "tokyo-market-blue": "#0A2463",
+                        "innovation-silver": "#F8FAFC",
+                        "on-surface-variant": "#424938",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed": "#dde3eb",
+                        "surface-container-high": "#eae8e7",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "primary": "#3c6a00",
+                        "primary-container": "#76b531",
+                        "on-primary-container": "#234200",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "section-gap": "160px",
+                        "gutter": "32px",
+                        "container-max": "1280px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Noto Sans"],
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "display-lg-mobile": ["\"Source Serif 4\""],
+                        "caption": ["Noto Sans"],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "body-md": ["Noto Sans"],
+                        "label-caps": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.8", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .parallax-bg { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        .glass-nav { background: rgba(251, 249, 248, 0); transition: all 0.5s ease-in-out; }
+        .glass-nav.scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-integrity-green selection:text-white overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-500" id="top-nav">
+<div class="flex justify-between items-center px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="TOKYO SOKUSEI" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLsH4nQzeQSvFanMrHYqagm39OuN8WiqMlj8_xSOwst6glWYUFZZyzeerioAjYwdEsMDVeXGEsQEVsXttVUGFOC6mFMavjO3UEV6cn4y0VBP3f5vRFARW5LM76MEEFKI7ejPbs1h2-tIKPgJSFIur3JSJ-uygUvSWzrRwutDz-PTPqOkYQgge64FJsg4RzDTQgzf2xuxyMZyYQzCDP73aS-o23U5BIhum-i4iS-mqFogNzWnYqNOhuY7RTg"/>
+<span class="font-headline-md text-headline-md tracking-tighter text-tokyo-market-blue hidden lg:block">TOKYO SOKUSEI</span>
+</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#heritage">Heritage</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#innovation">Innovation</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#sustainability">Sustainability</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#network">Network</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#careers">Careers</a>
+<button class="bg-tokyo-market-blue text-white px-8 py-3 font-label-caps text-label-caps rounded-sm hover:opacity-90 transition-opacity">Contact Us</button>
+</div>
+<button class="md:hidden text-tokyo-market-blue">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-tokyo-market-blue/30 z-10"></div>
+<div class="w-full h-full bg-cover bg-center scale-105 transition-transform duration-[10s] hover:scale-100" data-alt="A cinematic, high-resolution wide shot of traditional Japanese terraced fields at dawn. Golden sunlight filters through morning mist rising from a nearby river, illuminating the lush green vegetable rows and traditional farm houses in the valley. The atmosphere is peaceful, pristine, and represents the deep roots of Japanese agriculture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmo0WQ1SzdAJh9DpNAs-qrYPXLhASuOMYMWxZyhc3xn76Z6oNHCBJFLz1p_ARDbNR2ADxScDYrOBU8fTmrlqd1z3rYVBOtR_N6w3aiiUhyk75xbnCPrAXJFOkmalpq7k0MrwxrZ5nWzSBxKvMLExoRkMN-5gFj3wnzQG8LOj-BzIRBWmOjTJ_Q9VREWpWK-TjUMjKJHvqmAZLqaA-NGvIPqKp4J4FB6foNxomHaOm92u-cBDpunN1Uw0q5HQWxklF8pLFY7VIgNGA')"></div>
+</div>
+<div class="relative z-20 px-margin-desktop max-w-container-max mx-auto w-full text-white">
+<div class="max-w-3xl space-y-unit">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8 leading-tight animate-fade-in-up">
+                    日本の食を、<br/>未来へつなぐ。
+                </h1>
+<p class="font-body-lg text-body-lg opacity-90 max-w-xl delay-300">
+                    創業から70余年。私たちは築地から大田へ、そして世界へ。
+                    鮮度と信頼を届ける食品流通の革新者として、新しい食のインフラを構築します。
+                </p>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+<span class="font-label-caps text-label-caps">SCROLL</span>
+<div class="w-px h-12 bg-white/50 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-white animate-bounce-slow"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Message -->
+<section class="py-section-gap px-margin-desktop bg-surface relative overflow-hidden">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-gutter items-center">
+<div class="w-full md:w-1/2 reveal">
+<span class="font-label-caps text-label-caps text-integrity-green mb-6 block">OUR PHILOSOPHY</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-lg text-tokyo-market-blue mb-12 leading-relaxed">
+                    伝統を重んじ、<br/>
+                    進化を止めない。
+                </h2>
+<div class="space-y-6 text-on-surface-variant font-body-lg text-body-lg leading-loose">
+<p>1948年の創業以来、東京促成青果は常に市場の最前線で食の可能性を追求してきました。築地市場で培った確かな「目利き」の力と、大田市場における高度な物流機能を融合。</p>
+<p>単なる卸売業を超え、産地と消費者をシームレスにつなぐ。それが、私たちが目指す「次世代の食品流通」のかたちです。</p>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[600px] relative reveal delay-200">
+<div class="absolute inset-0 border border-outline-variant translate-x-8 translate-y-8"></div>
+<div class="w-full h-full bg-cover bg-center relative z-10 shadow-2xl" data-alt="A modern, minimalist laboratory-style processing facility for fresh produce. High-tech stainless steel equipment and conveyor belts carry perfectly sorted vibrant vegetables under bright, clean LED lighting. The scene conveys surgical precision, hygiene, and the intersection of traditional produce with futuristic technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAormT_OewyGrqqi_nbP7S6nNQ5QRgApdIwH3JCa2cQoaFJYu_hNNaeRB4Lx1IwUJPk6qlm1amcil3AbK-ZmFCvvUS9ib7DdIo625ziSJEQDMAoGdy2NLfW5dEp1TFPkI1ufwhLDQCbor9E7145Q43uq0A_Hepvy-m5tN-ch9gaeAk9__TE7mr_PW_0MUmH0P7-gl8xQNkjEUr3bEHsCV69pf3u6Zs2D4X1popZkphXLgf2Z2F-022CxBHZKKifhKmF0GNwyTWPIWg')"></div>
+</div>
+</div>
+</section>
+<!-- Heritage Section -->
+<section class="relative py-section-gap overflow-hidden bg-innovation-silver" id="heritage">
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-surface to-transparent"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-7 reveal">
+<img alt="TSUKUJI 1948" class="w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLu2erQcdDCK7BuicTSdNr00w09oQoKGZ0peEJye_kkEl3Izw8IKjoqKSfcpNfM3Qs40FL1y29lIWR8ficBjCD73NjnHKFreB73zaQGdKczIO53tvNQN8ubLs2eMT3kb83c-lERlAlqbfXzUGg-c8RcVlm7c5480cqOOaA9J5RRIWqxNcsrMLcbSuCFcMzX1jwMo3b5Xs74DBTdKmKq_gbRt9cxsFhOkk2nfXTUOWhwrfYPREJIjjEI51ac"/>
+<div class="mt-8 flex justify-between items-baseline border-b border-outline-variant pb-4">
+<span class="font-display-lg text-display-lg text-tokyo-market-blue opacity-10">1948</span>
+<h3 class="font-headline-md text-headline-md text-tokyo-market-blue">築地から始まった信頼の歴史</h3>
+</div>
+</div>
+<div class="md:col-span-5 reveal delay-300">
+<div class="bg-white p-12 shadow-sm border-l-4 border-integrity-green">
+<p class="font-body-lg text-body-lg text-on-surface-variant italic mb-8">
+                            「本当に良いものを、明日を担う人々へ。」
+                        </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            戦後の復興期、東京・築地で産声を上げた私たちの使命は、変わることなく受け継がれています。時代と共に市場の役割は変化しても、生産者の想いと料理人のこだわりを繋ぐ情熱は今も脈々と流れています。
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Bento Grid -->
+<section class="py-section-gap px-margin-desktop bg-surface" id="innovation">
+<div class="max-w-container-max mx-auto">
+<div class="mb-24 reveal text-center max-w-2xl mx-auto">
+<span class="font-label-caps text-label-caps text-integrity-green mb-4 block">SERVICES</span>
+<h2 class="font-display-lg text-headline-lg text-tokyo-market-blue">高度な加工と、確かな物流。</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Service Card 1 -->
+<div class="md:col-span-2 group relative overflow-hidden bg-white reveal">
+<div class="aspect-video overflow-hidden">
+<img alt="OOTA FACILITY" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLtgPm6fIPChHIWVEGYErwnIZKRgEckkn0PaTi84VaObemOCBu_mbBUZoUgKOPu2i7m8DqzSlK7km54cSsV9JjCYNarOw-wkTus_K_2eAVRqNUBQQCIBhBUHFT3XQUUJcvhzGDtn3i9m9fmZeftJcVoGYDtW-xm5P5WrUiwAMiuG5vXA2QE2CFDS3LFxy4Iw8a1HaxLBedoQmJCgI2Tx5lKdiaM1FWlealSd0-kET_Qc2AtxfhyKHM9CKfg"/>
+</div>
+<div class="p-12">
+<h3 class="font-headline-md text-headline-md text-tokyo-market-blue mb-4">大田市場・物流拠点</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                            日本最大級の大田市場内に拠点を構え、24時間365日の安定供給体制を構築。ITを活用した在庫管理と配送システムで、最高鮮度でのデリバリーを実現します。
+                        </p>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="group relative overflow-hidden bg-tokyo-market-blue text-white reveal delay-100">
+<div class="h-full flex flex-col p-12 justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl mb-6 text-integrity-green">biotech</span>
+<h3 class="font-headline-md text-headline-md mb-4">高度加工センター</h3>
+<p class="font-body-md text-body-md opacity-80">
+                                HACCPに準拠した衛生管理のもと、カット野菜やキット加工など、顧客のニーズに合わせた付加価値の高いソリューションを提供。
+                            </p>
+</div>
+<div class="pt-12">
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps hover:gap-4 transition-all" href="#">VIEW DETAIL <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="group relative overflow-hidden bg-innovation-silver reveal delay-200">
+<div class="p-12">
+<span class="material-symbols-outlined text-4xl mb-6 text-tokyo-market-blue">hub</span>
+<h3 class="font-headline-md text-headline-md text-tokyo-market-blue mb-4">荷受・仲卸の兼業</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            市場機能を垂直統合することで、情報の透明化とコスト最適化を実現。産地と市場、そして実需者をダイレクトに繋ぐ独自のビジネスモデルです。
+                        </p>
+</div>
+</div>
+<!-- Service Card 4 -->
+<div class="md:col-span-2 group relative overflow-hidden reveal delay-300">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 group-hover:scale-105 transition-transform duration-700" data-alt="A macro close-up of premium Japanese vegetables—radishes, carrots, and leafy greens—perfectly arranged in stainless steel containers. Subtle water droplets and a gentle mist highlight their extreme freshness and high quality. The lighting is bright and natural, emphasizing the organic beauty and surgical cleanliness of the distribution process." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlVhj5bqxSQ26JN848_Bst3e21cZjuBWbhqRvBRNdHkf7QD0cS3IMOOhrlqv35qV7k0XdEcUBqol6XqrOotbSyl-Qdhk0SVsj7Ficx-xphsSzC0jX55NY4SCSs9U8M4hLGEwQivQF__8xDazHmqpiYrINFlvGxRlTxelwhiCGg4kkkcqOeq4UYVGgycYoB_UoTACYA1HiEiI3KFFVN_DsDHoCBJdaqD_sHNFR2fA4DYG_vtdWEES9f4a67FHqlD5Rk-7Y51bu6gnQ')"></div>
+<div class="relative z-10 p-12 bg-gradient-to-t from-tokyo-market-blue/80 to-transparent h-full flex flex-col justify-end text-white">
+<h3 class="font-headline-md text-headline-md mb-2">厳選された品質管理</h3>
+<p class="font-body-md text-body-md opacity-80 max-w-md">プロの目利きが毎日選別する、最高ランクの青果物。私たちはその一瞬の旬を逃しません。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Figures Section -->
+<section class="py-32 bg-tokyo-market-blue text-white overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+<div class="reveal">
+<div class="font-display-lg text-display-lg text-integrity-green mb-2">1948</div>
+<div class="font-label-caps text-label-caps opacity-60">FOUNDED IN</div>
+</div>
+<div class="reveal delay-100">
+<div class="font-display-lg text-display-lg text-integrity-green mb-2">500+</div>
+<div class="font-label-caps text-label-caps opacity-60">NETWORK PARTNERS</div>
+</div>
+<div class="reveal delay-200">
+<div class="font-display-lg text-display-lg text-integrity-green mb-2">30k</div>
+<div class="font-label-caps text-label-caps opacity-60">TONS ANNUALLY</div>
+</div>
+<div class="reveal delay-300">
+<div class="font-display-lg text-display-lg text-integrity-green mb-2">0</div>
+<div class="font-label-caps text-label-caps opacity-60">FOOD LOSS TARGET</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Network & Sustainability -->
+<section class="py-section-gap px-margin-desktop bg-surface relative overflow-hidden" id="sustainability">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row-reverse gap-gutter items-center">
+<div class="w-full md:w-1/2 reveal">
+<span class="font-label-caps text-label-caps text-integrity-green mb-6 block">SUSTAINABILITY</span>
+<h2 class="font-display-lg text-headline-lg text-tokyo-market-blue mb-12">大地と歩む、持続可能な未来。</h2>
+<div class="space-y-6 text-on-surface-variant font-body-lg text-body-lg">
+<p>私たちは、産地との強固なネットワークを通じて、日本の農業の持続可能性を支援しています。規格外品を活用した加工や、物流効率化によるCO2削減など、サプライチェーン全体で環境負荷の低減に取り組んでいます。</p>
+<p>次世代に豊かな食文化を残すために、私たちができること。それは流通の力で、食の価値を最大化し、無駄を最小化することです。</p>
+</div>
+</div>
+<div class="w-full md:w-1/2 reveal delay-200">
+<div class="aspect-[4/5] bg-cover bg-center rounded-sm" data-alt="A wide, sweeping landscape of lush Japanese farmland at twilight. The rows of crops create elegant geometric patterns in the soil. Soft purple and orange hues fill the sky, reflecting a sense of peace and environmental harmony. The image is clean, atmospheric, and highlights the beauty of sustainable agriculture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcYGWrLvH5THWfJtRv9PClXTH2I0s8J1jaKcex-GHi53nuQdkIxNSEdXPFfTmF_fd-3clKu9nw66zkdwXULjID43gR0xpDefKnyOvdMOVhroAgxqb2vv7VIKZf-LjRWapoJq1OUJ-gzoq_-Eok-OtH68b7ncMXmArFhleGsG0ZmGJrcIsdcTrPMYUgEOIyb2zo0YBZEL7nEy304UZMmhQIu-4NgwwAu9zwFwrFO2no81Eypgc9mRhEzBKR0nWZPA3vYmUwqrMLbXo')"></div>
+</div>
+</div>
+</section>
+<!-- News & Careers Section -->
+<section class="py-section-gap px-margin-desktop bg-innovation-silver" id="careers">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<!-- News -->
+<div class="reveal">
+<div class="flex justify-between items-baseline mb-12 border-b border-outline-variant pb-4">
+<h2 class="font-headline-lg text-headline-lg text-tokyo-market-blue">News</h2>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-integrity-green transition-colors" href="#">VIEW ALL</a>
+</div>
+<div class="space-y-8">
+<article class="group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">2024.05.15</span>
+<h3 class="font-body-lg text-body-lg text-on-surface group-hover:text-integrity-green transition-colors">新加工センターのHACCP認証取得についてのお知らせ</h3>
+</article>
+<article class="group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">2024.04.10</span>
+<h3 class="font-body-lg text-body-lg text-on-surface group-hover:text-integrity-green transition-colors">サステナビリティレポート2023 公開のご案内</h3>
+</article>
+<article class="group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">2024.03.20</span>
+<h3 class="font-body-lg text-body-lg text-on-surface group-hover:text-integrity-green transition-colors">地域産地支援プロジェクト：長野県産レタスのフェアを開催</h3>
+</article>
+</div>
+</div>
+<!-- Careers -->
+<div class="reveal delay-200">
+<div class="bg-tokyo-market-blue p-12 text-white h-full flex flex-col justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-8">Careers</h2>
+<p class="font-body-lg text-body-lg opacity-80 mb-8">
+                                「食」の未来を、あなたの力で。私たちは、情熱を持って流通の革新に挑む仲間を募集しています。
+                            </p>
+</div>
+<a class="inline-flex items-center gap-4 bg-integrity-green text-white px-10 py-5 font-label-caps text-label-caps hover:opacity-90 transition-opacity self-start" href="#">
+                            RECRUIT SITE <span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-innovation-silver border-t border-outline-variant/30 py-24 px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-16">
+<div class="col-span-1 md:col-span-2">
+<img alt="TOKYO SOKUSEI" class="h-10 mb-8 grayscale opacity-80" src="https://lh3.googleusercontent.com/aida/AP1WRLsH4nQzeQSvFanMrHYqagm39OuN8WiqMlj8_xSOwst6glWYUFZZyzeerioAjYwdEsMDVeXGEsQEVsXttVUGFOC6mFMavjO3UEV6cn4y0VBP3f5vRFARW5LM76MEEFKI7ejPbs1h2-tIKPgJSFIur3JSJ-uygUvSWzrRwutDz-PTPqOkYQgge64FJsg4RzDTQgzf2xuxyMZyYQzCDP73aS-o23U5BIhum-i4iS-mqFogNzWnYqNOhuY7RTg"/>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-4">
+                        東京促成青果株式会社<br/>
+                        東京都大田区東海3丁目2番6号 大田市場内
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        TEL: 03-xxxx-xxxx<br/>
+                        FAX: 03-xxxx-xxxx
+                    </p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-tokyo-market-blue mb-6">EXPLORE</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Heritage</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Innovation</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Sustainability</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Network</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-tokyo-market-blue mb-6">COMPANY</h4>
+<ul class="space-y-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">News</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Careers</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-integrity-green" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-outline-variant/30 gap-4">
+<p class="font-caption text-caption text-on-surface-variant">© 2024 Tokyo Sokusei Seika Co., Ltd. All Rights Reserved.</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="text-on-surface-variant hover:text-tokyo-market-blue transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Reveal elements on scroll
+        const reveal = () => {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach((el) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
+                }
+            });
+        };
+
+        // Handle navigation appearance on scroll
+        const handleNav = () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
+
+        window.addEventListener("scroll", () => {
+            reveal();
+            handleNav();
+        });
+
+        // Initialize state
+        window.addEventListener("load", () => {
+            reveal();
+            handleNav();
+        });
+    </script>
+</body></html>
