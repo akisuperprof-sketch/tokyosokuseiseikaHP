@@ -1,13 +1,15 @@
 import { companyData, locationsData, advantageData } from "@/lib/content/repository";
 import { VerifiedContent, ImageAsset } from "@/lib/content/types";
+import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "【DEV】Content Audit",
 };
 
 export default function ContentAuditPage() {
-  // In a real application, we might want to check process.env.NODE_ENV === "development"
-  // and return a 404 in production, but for now we'll just render the dashboard.
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
 
   const allData: { key: string; data: VerifiedContent<unknown> }[] = [
     { key: "employeeCount", data: companyData.employeeCount },
