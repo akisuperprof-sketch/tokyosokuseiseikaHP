@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_LINKS = [
   { name: "トップ", href: "/" },
@@ -63,9 +64,7 @@ export function Header() {
           aria-label="東京促成青果株式会社 トップページ"
           onClick={() => setIsOpen(false)}
         >
-          <span className="text-xl md:text-2xl font-bold text-brand font-serif">
-            東京促成青果<span className="text-sm font-sans font-normal ml-1 text-foreground">株式会社</span>
-          </span>
+          <Logo className="h-10 md:h-12 w-auto text-brand" />
         </Link>
 
         {/* Desktop Navigation */}

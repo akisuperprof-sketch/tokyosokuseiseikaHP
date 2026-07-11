@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { locationsData } from "@/lib/content/repository";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,9 +15,7 @@ export function Footer() {
           {/* Logo & Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm">
-              <span className="text-2xl font-bold font-serif">
-                東京促成青果<span className="text-sm font-sans font-normal ml-1">株式会社</span>
-              </span>
+              <Logo className="h-10 w-auto text-white" />
             </Link>
             <p className="text-brand-soft text-sm mb-6 leading-relaxed">
               1948年の設立以来、青果物および加工品の流通に携わっています。
