@@ -99,7 +99,15 @@ export default function Home() {
             {/* 荷受け - Large */}
             <Reveal delay={100} direction="up" className="md:col-span-8 md:row-span-2 h-full">
               <BentoCard size="large" className="relative p-8 md:p-10 bg-brand text-white hover-card overflow-hidden h-full group">
-                <Image src="/images/ai/market/market-001.jpg" alt="荷受け機能" fill className="object-cover opacity-30 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000" sizes="(max-width: 768px) 100vw, 66vw" />
+                <video
+                  src="/videos/ai/market/market-001.mp4"
+                  poster="/images/ai/market/market-001.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000"
+                />
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                   <Handshake size={120} />
                 </div>
