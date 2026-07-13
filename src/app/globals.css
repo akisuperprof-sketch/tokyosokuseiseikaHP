@@ -52,4 +52,68 @@ html {
   .text-pretty {
     text-wrap: pretty;
   }
+  
+  /* Micro Interactions */
+  .hover-card {
+    @apply transition-all duration-300 ease-out;
+  }
+  @media (hover: hover) {
+    .hover-card:hover {
+      @apply -translate-y-1 shadow-md border-brand/20;
+    }
+  }
+  
+  .hover-image-zoom {
+    @apply transition-transform duration-700 ease-out overflow-hidden;
+  }
+  @media (hover: hover) {
+    .hover-image-zoom:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  .hover-arrow {
+    @apply transition-transform duration-300 ease-out;
+  }
+  @media (hover: hover) {
+    .group:hover .hover-arrow {
+      @apply translate-x-1;
+    }
+  }
+
+  .hover-text-link {
+    @apply relative transition-colors duration-300 ease-out;
+  }
+  @media (hover: hover) {
+    .hover-text-link:hover {
+      @apply text-brand;
+    }
+  }
+  .hover-text-link::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 w-full h-[1px] bg-brand origin-left scale-x-0 transition-transform duration-300 ease-out;
+  }
+  @media (hover: hover) {
+    .hover-text-link:hover::after {
+      @apply scale-x-100;
+    }
+  }
+
+  .btn-primary {
+    @apply bg-brand text-white px-6 py-3 rounded-sm font-bold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand active:scale-[0.99] shadow-sm inline-flex items-center justify-center gap-2;
+  }
+  @media (hover: hover) {
+    .btn-primary:hover {
+      @apply bg-brand-hover shadow-md -translate-y-0.5;
+    }
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-white px-8 py-4 rounded-sm font-bold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent active:scale-[0.99] shadow-md inline-flex items-center justify-center gap-2;
+  }
+  @media (hover: hover) {
+    .btn-accent:hover {
+      @apply bg-[#a6842f] shadow-lg -translate-y-0.5;
+    }
+  }
 }

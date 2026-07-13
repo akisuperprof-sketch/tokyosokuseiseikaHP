@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 import { cn } from "./Container";
 
 type RevealProps = {
@@ -8,20 +8,30 @@ type RevealProps = {
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
+  once?: boolean;
 };
 
-export function Reveal({ children, className, delay = 0, direction = "up" }: RevealProps) {
+export function Reveal({ 
+  children, 
+  className, 
+  delay = 0, 
+  direction = "up",
+  once = true
+}: RevealProps) {
+  const [isRevealed, setIsRevealed] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0", "translate-x-0");
-            observer.unobserve(entry.target);
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsRevealed(true);
+          if (once && ref.current) {
+            observer.unobserve(ref.current);
           }
-        });
+        } else if (!once) {
+          setIsRevealed(false);
+        }
       },
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
@@ -31,18 +41,18 @@ export function Reveal({ children, className, delay = 0, direction = "up" }: Rev
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [once]);
 
-  const getDirectionClasses = () => {
+  const getInitialClasses = () => {
     switch (direction) {
       case "up":
-        return "translate-y-8";
+        return "translate-y-6";
       case "down":
-        return "-translate-y-8";
+        return "-translate-y-6";
       case "left":
-        return "translate-x-8";
+        return "translate-y-6 md:translate-y-0 md:translate-x-8";
       case "right":
-        return "-translate-x-8";
+        return "translate-y-6 md:translate-y-0 md:-translate-x-8";
       case "none":
         return "";
     }
@@ -52,11 +62,11 @@ export function Reveal({ children, className, delay = 0, direction = "up" }: Rev
     <div
       ref={ref}
       className={cn(
-        "opacity-0 transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:translate-x-0",
-        getDirectionClasses(),
+        "transition-all duration-700 ease-out motion-reduce:transition-opacity motion-reduce:duration-500 motion-reduce:transform-none",
+        isRevealed ? "opacity-100" : `opacity-0 ${getInitialClasses()}`,
         className
       )}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: isRevealed ? `${delay}ms` : "0ms" }}
     >
       {children}
     </div>

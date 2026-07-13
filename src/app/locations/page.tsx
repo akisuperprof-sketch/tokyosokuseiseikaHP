@@ -123,10 +123,10 @@ export default function LocationsPage() {
                             href={externalUrl} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="bg-brand text-white hover:bg-brand-dark px-6 py-3 rounded-full shadow-xl text-sm font-bold flex items-center gap-2 transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                            className="bg-brand text-white hover:bg-brand-hover px-6 py-3 rounded-full shadow-xl text-sm font-bold flex items-center gap-2 transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand group"
                           >
                             Google Mapsで開く
-                            <ExternalLink size={16} />
+                            <ExternalLink size={16} className="hover-arrow" />
                           </a>
                         </div>
                       </div>

@@ -1,5 +1,6 @@
 import { MapPin } from "lucide-react";
 import { companyData, locationsData } from "@/lib/content/repository";
+import { canDisplayImage } from "@/lib/content/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
@@ -18,7 +19,7 @@ export default function AboutPage() {
         title="会社情報"
         subtitle="About Us"
         description="生産者と消費者を結ぶ青果流通の架け橋として、1948年から日本の食を支え続けています。"
-        backgroundImage="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80"
+        backgroundImage="/images/ai/hero/hero-004.jpg"
       />
 
       <section className="py-24 bg-background">
@@ -38,9 +39,9 @@ export default function AboutPage() {
                   <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
                   
                   <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start relative z-10">
-                    {companyData.presidentImage.status === "approved" && (
+                    {canDisplayImage(companyData.presidentImage) && (
                       <div className="w-full md:w-5/12 shrink-0">
-                        <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden shadow-lg border-8 border-white">
+                        <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden shadow-lg border-8 border-white hover-image-zoom">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img 
                             src={companyData.presidentImage.src} 
@@ -50,7 +51,7 @@ export default function AboutPage() {
                         </div>
                       </div>
                     )}
-                    <div className={companyData.presidentImage.status === "approved" ? "w-full md:w-7/12" : "w-full"}>
+                    <div className={canDisplayImage(companyData.presidentImage) ? "w-full md:w-7/12" : "w-full"}>
                       <div className="prose prose-lg max-w-none text-foreground/80 whitespace-pre-line leading-loose font-serif">
                         {companyData.presidentMessage.value}
                       </div>

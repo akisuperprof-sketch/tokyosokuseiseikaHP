@@ -10,7 +10,7 @@ import { Logo } from "@/components/ui/Logo";
 const NAV_LINKS = [
   { name: "トップ", href: "/" },
   { name: "会社情報", href: "/about" },
-  { name: "事業・特長", href: "/advantage" },
+  { name: "当社の強み", href: "/advantage" },
   { name: "拠点情報", href: "/locations" },
   { name: "採用情報", href: "/recruit" },
   { name: "ニュース", href: "/news" },
@@ -77,7 +77,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "text-sm font-bold transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm px-2 py-1",
+                      "text-sm font-bold hover-text-link transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-sm px-2 py-1",
                       isActive ? "text-brand" : "text-foreground-muted"
                     )}
                   >

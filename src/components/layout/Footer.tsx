@@ -36,17 +36,17 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-6 border-b border-white/20 pb-2 font-serif tracking-widest">企業情報</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/about" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
+                <Link href="/about" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
                   東京促成青果について
                 </Link>
               </li>
               <li>
-                <Link href="/advantage" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
-                  事業・特長
+                <Link href="/advantage" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
+                  当社の強み
                 </Link>
               </li>
               <li>
-                <Link href="/locations" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
+                <Link href="/locations" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
                   拠点情報
                 </Link>
               </li>
@@ -58,17 +58,17 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-6 border-b border-white/20 pb-2 font-serif tracking-widest">インフォメーション</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/news" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
+                <Link href="/news" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
                   ニュース＆トピックス
                 </Link>
               </li>
               <li>
-                <Link href="/recruit" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
+                <Link href="/recruit" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
                   採用情報
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
+                <Link href="/contact" className="text-brand-soft hover-text-link transition-colors text-sm font-medium">
                   お問い合わせ
                 </Link>
               </li>
@@ -77,9 +77,24 @@ export function Footer() {
 
           {/* Links 3 */}
           <div>
-            <h3 className="font-bold text-lg mb-6 border-b border-white/20 pb-2 font-serif tracking-widest">その他</h3>
+            <h3 className="font-bold text-lg mb-6 border-b border-white/20 pb-2 font-serif tracking-widest">Pickup</h3>
             <ul className="flex flex-col gap-3">
               <li>
+                <a href="https://www.tokyo-sokusei-seika.co.jp/infomation/index.html" className="text-brand-soft hover-text-link transition-colors text-sm font-medium flex items-center gap-1">
+                  旧サイト ニュース＆トピックス
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tokyo-sokusei-seika.co.jp/silksweet/index.html" className="text-brand-soft hover-text-link transition-colors text-sm font-medium flex items-center gap-1">
+                  Mitaaji
+                </a>
+              </li>
+              <li>
+                <a href="https://www.chefoodo.jp/" target="_blank" rel="noopener noreferrer" className="text-brand-soft hover-text-link transition-colors text-sm font-medium flex items-center gap-1" aria-label="一般社団法人ChefooDo（新しいタブで開く）">
+                  ChefooDo
+                </a>
+              </li>
+              <li className="mt-4 pt-4 border-t border-white/10">
                 <Link href="/privacy" className="text-brand-soft hover:text-white transition-colors text-sm font-medium">
                   プライバシーポリシー
                 </Link>

@@ -328,10 +328,10 @@ export default function ContactForm({ enabled }: { enabled: boolean }) {
                       <button
                         type="submit"
                         disabled={!enabled}
-                        className="bg-brand hover:bg-[#132219] text-white px-12 py-4 rounded-sm font-bold tracking-widest transition-all inline-flex items-center justify-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 hover:shadow-lg w-full md:w-auto min-w-[280px]"
+                        className="bg-brand hover:bg-[#132219] text-white px-12 py-4 rounded-sm font-bold tracking-widest transition-all inline-flex items-center justify-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 hover:shadow-lg w-full md:w-auto min-w-[280px] group"
                       >
                         確認画面へ進む
-                        <ChevronRight size={18} />
+                        <ChevronRight size={18} className="hover-arrow" />
                       </button>
                     </div>
                   </form>
@@ -413,10 +413,10 @@ export default function ContactForm({ enabled }: { enabled: boolean }) {
                     type="button"
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="bg-brand hover:bg-[#132219] text-white px-10 py-4 rounded-sm font-bold tracking-widest transition-all duration-300 inline-flex items-center justify-center gap-3 disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand shadow-lg hover:-translate-y-1 w-full sm:w-auto min-w-[280px]"
+                    className="bg-brand hover:bg-[#132219] text-white px-10 py-4 rounded-sm font-bold tracking-widest transition-all duration-300 inline-flex items-center justify-center gap-3 disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand shadow-lg hover:-translate-y-1 w-full sm:w-auto min-w-[280px] group"
                   >
                     {isSubmitting ? "送信中..." : "送信する"}
-                    {!isSubmitting && <Mail size={18} />}
+                    {!isSubmitting && <Mail size={18} className="hover-arrow" />}
                   </button>
                 </div>
               </div>

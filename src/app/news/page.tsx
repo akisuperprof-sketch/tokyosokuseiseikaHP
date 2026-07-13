@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, ExternalLink } from "lucide-react";
 import { newsData } from "@/lib/content/news";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
@@ -80,6 +80,19 @@ export default function NewsPage() {
               </div>
             </Reveal>
           )}
+
+          {/* Legacy News Link */}
+          <Reveal delay={300}>
+            <div className="mt-12 text-center border-t border-border pt-12">
+              <Link 
+                href="https://www.tokyo-sokusei-seika.co.jp/infomation/index.html" 
+                className="inline-flex items-center gap-2 text-foreground-muted hover:text-brand hover-text-link transition-colors group text-sm"
+              >
+                過去のニュース＆トピックスを見る
+                <ExternalLink size={14} className="hover-arrow" />
+              </Link>
+            </div>
+          </Reveal>
 
         </Container>
       </section>

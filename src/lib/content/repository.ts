@@ -63,8 +63,10 @@ export const companyData = {
   presidentImage: {
     src: "/images/approved/president.jpg",
     alt: "東京促成青果株式会社 代表取締役 大竹康弘",
-    status: "placeholder",
-    credit: "ユーザー提供画像。本人確認・掲載許可確認待ち",
+    status: "confirmed",
+    permissionStatus: "pending",
+    source: "ユーザー提供",
+    permissionNote: "Web掲載許可の正式確認が必要",
   } as ImageAsset,
 };
 

@@ -2,6 +2,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { newsData } from "@/lib/content/news";
+import { canDisplayImage } from "@/lib/content/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -64,7 +65,7 @@ export default function NewsDetailPage({ params }: { params: { slug: string } })
             <div className="bg-white p-8 md:p-16 rounded-2xl border border-border shadow-lg relative overflow-hidden">
               
               <div className="relative z-10">
-                {news.image && news.image.status === "approved" && (
+                {canDisplayImage(news.image) && (
                   <div className="mb-12 rounded-xl overflow-hidden shadow-md">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
