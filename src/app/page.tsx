@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { BentoCard } from "@/components/ui/BentoCard";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 
 export default function Home() {
   const recentNews = newsData
@@ -20,17 +21,11 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative w-full h-[100svh] overflow-hidden bg-brand">
-        <Image
-          src="/images/ai/hero/hero-001.jpg"
-          alt="東京促成青果"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand/90 via-brand/40 to-brand/20" />
-        <Container className="relative z-10 pt-20 h-full flex flex-col justify-center">
+      <HeroVideo
+        mp4Src="/videos/hero/hero-video-001.mp4"
+        posterSrc="/images/ai/hero/hero-001.jpg"
+      >
+        <Container className="pt-20">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-serif tracking-wide drop-shadow-lg text-white">
               おいしい日本の食を<br className="hidden md:block"/>応援する。
@@ -55,7 +50,7 @@ export default function Home() {
             </div>
           </div>
         </Container>
-      </section>
+      </HeroVideo>
 
       {/* Intro Section */}
       <section className="py-24 bg-background">

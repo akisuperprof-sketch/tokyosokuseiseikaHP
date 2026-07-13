@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { cn } from "./Container";
 
 type HeroVideoProps = {
@@ -26,6 +27,8 @@ export function HeroVideo({
 }: HeroVideoProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [shouldPlay, setShouldPlay] = useState(true);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Check if mobile for video source
@@ -36,7 +39,7 @@ export function HeroVideo({
     // Check prefers-reduced-motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) {
-      setTimeout(() => setShouldPlay(false), 0);
+      setShouldPlay(false);
     }
     
     const handleMotionChange = (e: MediaQueryListEvent) => {
@@ -50,31 +53,49 @@ export function HeroVideo({
     };
   }, []);
 
+  useEffect(() => {
+    if (videoRef.current && videoRef.current.readyState >= 3) {
+      setIsVideoReady(true);
+    }
+  }, [shouldPlay]);
+
   const activeMp4 = isMobile && mobileMp4Src ? mobileMp4Src : mp4Src;
   const activeWebm = isMobile && mobileWebmSrc ? mobileWebmSrc : webmSrc;
+  const hasVideoSource = activeMp4 || activeWebm;
 
   return (
     <div className={cn("relative w-full h-[100svh] overflow-hidden bg-brand", className)}>
-      {shouldPlay && (activeMp4 || activeWebm) ? (
+      {/* Poster Image (LCP optimized) */}
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={posterSrc}
+          alt="東京促成青果"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
+      {/* Video layer */}
+      {shouldPlay && hasVideoSource && (
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          poster={posterSrc}
-          className="absolute inset-0 w-full h-full object-cover"
+          onCanPlay={() => setIsVideoReady(true)}
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out",
+            isVideoReady ? "opacity-100" : "opacity-0"
+          )}
           aria-hidden="true"
         >
           {activeWebm && <source src={activeWebm} type="video/webm" />}
           {activeMp4 && <source src={activeMp4} type="video/mp4" />}
         </video>
-      ) : (
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center" 
-          style={{ backgroundImage: `url('${posterSrc}')` }} 
-          aria-hidden="true" 
-        />
       )}
       
       {/* Overlay */}
@@ -92,3 +113,4 @@ export function HeroVideo({
     </div>
   );
 }
+
